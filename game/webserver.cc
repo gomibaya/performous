@@ -1,3 +1,4 @@
+#ifdef ENABLED_WEBSERVER
 #include "webserver.hh"
 #ifdef USE_CPPNETLIB
 #include <boost/network/protocol/http/server.hpp>
@@ -199,4 +200,5 @@ boost::shared_ptr<Song> WebServer::GetSongFromJSON(std::string JsonDoc) {
 WebServer::WebServer(Songs& songs)
 	: m_songs(songs) {}
 WebServer::~WebServer(){}
+#endif
 #endif

@@ -27,9 +27,11 @@ class ScreenIntro : public Screen {
 
   private:
 	void draw_menu_options();
-	void draw_webserverNotice();
 	void populateMenu();
+	#ifdef ENABLED_WEBSERVER
+	void draw_webserverNotice();
 	std::string getIPaddr();
+	#endif
 	SvgTxtTheme& getTextObject(std::string const& txt);
 
 	Audio& m_audio;
@@ -39,7 +41,9 @@ class ScreenIntro : public Screen {
 	bool m_drawNotice = false;
 	AnimValue m_selAnim;
 	AnimValue m_submenuAnim;
+	#ifdef ENABLED_WEBSERVER
 	AnimValue m_webserverNoticeTimeout;
 	int webserversetting = 0;
 	std::string m_ipaddr = "";
+	#endif
 };

@@ -26,10 +26,12 @@ void ScreenIntro::enter() {
 		m_first = false;
 	}
 	reloadGL();
+	#ifdef ENABLED_WEBSERVER
 	webserversetting = config["game/webserver_access"].i();
 	if(webserversetting) {
 	m_audio.playSample("notice.ogg");
 	}
+	#endif
 }
 
 void ScreenIntro::reloadGL() {
@@ -154,7 +156,9 @@ void ScreenIntro::draw() {
 	}
 	// Menu
 	draw_menu_options();
+	#ifdef ENABLED_WEBSERVER
 	draw_webserverNotice();
+	#endif
 }
 
 SvgTxtTheme& ScreenIntro::getTextObject(std::string const& txt) {
@@ -189,6 +193,7 @@ void ScreenIntro::populateMenu() {
 	m_menu.add(MenuOption(_("Quit"), _("Leave the game"), imgQuit).screen(""));
 }
 
+#ifdef ENABLED_WEBSERVER
 void ScreenIntro::draw_webserverNotice() {
 	if(m_webserverNoticeTimeout.get() == 0) {
 		m_drawNotice = !m_drawNotice;
@@ -226,3 +231,4 @@ std::string ScreenIntro::getIPaddr() {
 
 	return "IP address";
 }
+#endif

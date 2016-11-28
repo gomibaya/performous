@@ -88,8 +88,10 @@ public:
 	SvgTxtTheme comment;
 	/// configuration comment text (short tip)
 	SvgTxtTheme short_comment;
+	#ifdef ENABLED_WEBSERVER
 	/// notice to remind people the webserver is active
 	SvgTxtTheme WebserverNotice;
+	#endif
 	/// configuration comment background
 	Surface comment_bg;
 	/// configuration comment background (short tip)
